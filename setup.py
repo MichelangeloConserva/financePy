@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-REQUIRED_PYTHON = (3, 6)
+#REQUIRED_PYTHON = (3, 6)
 EXCLUDE_FROM_PACKAGES = []
 try:
     with open('LICENSE.txt', 'r') as f:
@@ -16,7 +16,7 @@ except:
 
 setup(
   name='financePy',
-  python_requires='>={}.{}'.format(*REQUIRED_PYTHON),
+#  python_requires='>={}.{}'.format(*REQUIRED_PYTHON),
   packages=find_packages(),
   packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
   version='0.1',
