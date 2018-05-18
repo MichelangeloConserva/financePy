@@ -115,7 +115,7 @@ q_markowitz_alloc = portfolio.markowits_allocation(plot = True)
 
 
 I'm working on tons of other features and I'm quite excited about the results I achieved until now.
-The only thing I ask you is to send me e-mail or add me on facebook www.facebook.com/michelangelo.conserva to tell me your opinion and give suggestions.
+The only thing I ask you is to send me e-mail michelangelo.conserva@protonmail.com or add me on facebook www.facebook.com/michelangelo.conserva to tell me your opinion and give suggestions.
 
 
 
