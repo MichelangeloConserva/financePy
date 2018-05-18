@@ -20,6 +20,7 @@ package you need to have installed:
 The needed imports are:
 ~~~~
 from financePy import scraper as scr
+from financePy import snagglers as sna
 from financePy.scrapers.yahoo import tools as __ytools__
 from financePy.scrapers.morningstar import tools as __mtools__
 from financePy.scrapers.quandl import tools as __qtools__
