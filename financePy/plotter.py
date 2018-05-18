@@ -1,4 +1,4 @@
-from matplotlib.finance import candlestick_ohlc
+from mpl_finance import candlestick_ohlc
 from matplotlib import dates as mdates
 from matplotlib import ticker as mticker
 import matplotlib.pyplot as plt
