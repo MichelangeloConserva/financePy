@@ -10,7 +10,7 @@ package you need to have installed:
 * matplotlib
 * xlrd
 * scipy
-
+* selenium
 
 # This is an example of using the package
 
