@@ -17,6 +17,12 @@ if you want the plotter to work correctly you need to manually install
 pip3 install https://github.com/matplotlib/mpl_finance/archive/master.zip
 ```
 
+The raccomeded installation commandand is:
+```
+sudo python3 -m pip install git+https://github.com/MichelangeloConserva/financePy.git --user
+```
+
+
 # This is an example of using the package
 
 
