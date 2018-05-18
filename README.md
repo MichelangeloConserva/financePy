@@ -1,6 +1,6 @@
 # financePy
 A very high-level finance package
-package you need to have installed: [manually required for now]
+package you need to have installed: 
 . python3 -m pip install ...
 
 * pandas
