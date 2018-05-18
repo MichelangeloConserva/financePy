@@ -13,8 +13,8 @@ except:
     _readme = ''
 
 setup(
-  name='prova',
-  packages=find_packages(exclude=['aaaaa']),
+  name='financePy',
+  packages=find_packages(),
   version='0.2.1',
   description='+ una provae',
   author='Michelangelo Conserva',
@@ -23,5 +23,5 @@ setup(
   long_description=_readme,
   url='no',
   download_url='https://github.com/MichelangeloConserva/prova/releases',
-  install_requires=['setuptools', 'pandas', 'requests'],
+  install_requires=['setuptools', 'pandas', 'requests','quandl','bs4','xlrd','scipy'],
 )
