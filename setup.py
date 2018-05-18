@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
 
+REQUIRED_PYTHON = (3, 6)
+EXCLUDE_FROM_PACKAGES = []
 try:
     with open('LICENSE.txt', 'r') as f:
         _license = f.read()
@@ -14,11 +16,13 @@ except:
 
 setup(
   name='financePy',
+  python_requires='>={}.{}'.format(*REQUIRED_PYTHON),
   packages=find_packages(),
+  packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
   version='0.1',
-  description='+ una provae',
+  description='',
   author='Michelangelo Conserva',
-  author_email='mom',
+  author_email='michelangelo.conserva@protonmail.com',
   license=_license,
   long_description=_readme,
   url='no',
