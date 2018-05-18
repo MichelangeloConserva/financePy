@@ -10,28 +10,6 @@ __author__ = 'Michelangelo Conserva'
 __license__ = 'MIT'
 
 
-import snagglers as sna
-import scraper as st
-import plotter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

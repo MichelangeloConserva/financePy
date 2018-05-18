@@ -1,8 +1,9 @@
 from matplotlib.finance import candlestick_ohlc
-from matplotlib.dates import DateFormatter, date2num, WeekdayLocator, DayLocator, MONDAY
+from matplotlib import dates as mdates
+from matplotlib import ticker as mticker
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import numpy as np
 
 def candle_plot(data):
     """
@@ -23,18 +24,14 @@ def candle_plot(data):
     """
     data['Da'] = data.index
     data.reset_index()
-    data['date_ax'] = data['Da'].apply(lambda date: date2num(date))
+    data['date_ax'] = data['Da'].apply(lambda date: mdates.date2num(date))
     data_values = [tuple(vals) for vals in data[['date_ax', 'Open', 'High', 'Low', 'Close']].values]
     
-    mondays = WeekdayLocator(MONDAY)        # major ticks on the mondays
-    alldays = DayLocator()              # minor ticks on the days
-    weekFormatter = DateFormatter('%b %d')  # e.g., Jan 12
-    
+
     fig, ax = plt.subplots()
     fig.subplots_adjust(bottom=0.2)
-#    ax.xaxis.set_major_locator(mondays)
-#    ax.xaxis.set_minor_locator(alldays)
-    ax.xaxis.set_major_formatter(weekFormatter)
+    ax.xaxis.set_major_locator(mticker.MaxNLocator(6))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
     
     candlestick_ohlc(ax, data_values, width=0.6, colorup='g',colordown='r')
     
@@ -51,55 +48,59 @@ def scatter_plot(data_list, columns_names = False, cat = 'Close'):
 def weights_plotter(weights,tickers,colormapping = False):    
     fig, ax = plt.subplots()
     if type(colormapping) != type(False):
-        ax.scatter( [i for i in range(len(weights))], weights, c = colormapping, cmap = 'Reds')
+        ax.scatter( [i for i in range(len(weights))], weights, c = colormapping, cmap = 'Spectral')
     else:
         ax.scatter( [i for i in range(len(weights))], weights)
     ax.set_xticks([i for i in range(len(weights))])
     ax.set_xticklabels(tickers)
-    ax.set_ylim(0, max(weights)+0.01)
+    ax.set_ylim(0, max(weights)+ np.mean(weights)/4)
     
 
-def mov_avg_plot(ema, notifier = False):
+def mov_avg_plot(ema, notifier = True, indicator = 'arrow'):
     
     for tick,single in list(ema.items()):
         if notifier:
-            fig,ax = plt.subplots(2,1, sharex = True, gridspec_kw = {'height_ratios':[5, 1]})
-            fig.subplots_adjust(hspace=0.25)
-            ax[0].set_title(tick,{'fontsize': 20})
-            ax[0].plot(single.iloc[:,:single.shape[1]-1])
-            ax[0].get_xaxis().set_visible(False)
-            ax[1].set_title('Notifier', {'fontsize': 10})
-            ax[1].scatter(single.index,single.Notifier, s = 1, c = 'red', marker = 's' )
-            ax[1].set_ylim(-2,2)
-        else:
-            single.plot()
+            temp = single  
+            min_y = min(temp.Close.min(),temp.iloc[:,0].min())-1
+            max_y = max(temp.Close.max(),temp.iloc[:,-2].max())+1
+            
+            temp['noticool'] = temp.Notifier.diff().fillna(0)
+            
+            noticool = temp.apply( lambda x: x[temp.columns[0]] if x.noticool in [2,-2] else 0 , 1  )
+            fig,ax = plt.subplots()
+            temp.drop(columns = ['Notifier','noticool']).plot(ylim = (min_y,max_y), ax = ax, title = tick)
+            ax.scatter(temp.index, noticool, c = temp.Notifier, cmap='RdYlGn', s = 50)
+            if indicator == 'arrow':
+                
+                
+                for index in noticool.index:
+                    width = 12
+                    lenght = (max_y-min_y)/15
+                    if noticool[index] < temp.Close[index] and noticool[index] != 0:
+                        ax.arrow(index,noticool[index],0,temp.Close[index]-noticool[index], head_width=width, head_length=lenght, fc='g', ec='g')
+                    elif noticool[index] > temp.Close[index] and noticool[index] != 0:
+                        ax.arrow(index,noticool[index],0,temp.Close[index]-noticool[index], head_width=width, head_length=lenght, fc='r', ec='r')
+                
+            elif indicator == 'line':
+                ax.vlines(noticool[noticool != 0].index,min_y,max_y,'b','dashdot', alpha = 0.4, lw = 1 )
+            else:
+                raise ValueError('You used an inappropiate value for indicator, pls check the doc! (I know it\' boring but you really should)')
 
-def boll_bands_plot(boll_bands, notifier = False):
+
+        else:
+            single.plot(title = tick)
+
+def boll_bands_plot(boll_bands, notifier = True):
     
     for tick,single in list(boll_bands.items()):
         if notifier:
-            fig,ax = plt.subplots(2,1, sharex = True, gridspec_kw = {'height_ratios':[5, 1]})
-            fig.subplots_adjust(hspace=0.25)
-            ax[0].set_title(tick,{'fontsize': 20})
-            ax[0].plot(single.iloc[:,:3])
-            ax[0].get_xaxis().set_visible(False)
-            ax[1].set_title('Notifier', {'fontsize': 10})
-            ax[1].scatter(single.index,single.Notifier, s = 1, c = 'red', marker = 's' )
-            ax[1].set_ylim(-2,2)
+            temp = single  
+            min_y = min(temp.Close.min(),temp.iloc[:,0].min())-1
+            max_y = max(temp.Close.max(),temp.iloc[:,-2].max())+1
+            noticool = temp.apply( lambda x: x.Close+x['Notifier']/2 if x.Notifier == 1 else (x.Close+x.Notifier/2 if x.Notifier == -1 else 0) , 1  )
+            fig,ax = plt.subplots()
+            temp.drop('Notifier',1).plot(ylim = (min_y,max_y), ax = ax, title = tick)
+            ax.scatter(temp.index, noticool, c = temp.Notifier, cmap='RdYlGn', s = 5)
         else:
-            single.plot()
+            single.plot(title = tick)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
