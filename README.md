@@ -18,11 +18,12 @@ package you need to have installed:
 ## SCRAPER TOOL
 
 The needed imports are:
-* from financePy import scraper as scr
-* from financePy.scrapers.yahoo import tools as __ytools__
-* from financePy.scrapers.morningstar import tools as __mtools__
-* from financePy.scrapers.quandl import tools as __qtools__
-
+"""
+from financePy import scraper as scr
+from financePy.scrapers.yahoo import tools as __ytools__
+from financePy.scrapers.morningstar import tools as __mtools__
+from financePy.scrapers.quandl import tools as __qtools__
+"""
 ### Morningstar
 
 the available tickers for this source are:
