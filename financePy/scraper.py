@@ -9,17 +9,9 @@ from financePy.scrapers.yahoo import tools as __ytools__
 from financePy.scrapers.morningstar import tools as __mtools__
 from financePy.scrapers.quandl import tools as __qtools__
 from financePy.scrapers.reuters import tools as __rtools__
-from financePy.scrapers.forge import tools as __ftools__
 
 __TIME_ESTIMATOR__ = 0.6
 __TIME_ESTIMATOR_OWN__ = 1.2
-
-def F_data(symbols,path):
-    credentials = pd.read_csv(path + 'forge/credential.csv')
-
-    
-
-
 
 def MS_data(symbols,desired_data, start_date = [2017,1,1], end_date = False,
             traili_ret_freq = 'd', own_opt =[['OwnershipData'], ['mutualfund']],
