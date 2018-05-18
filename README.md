@@ -1,6 +1,7 @@
 # financePy
 A very high-level finance package
 package you need to have installed: [manually required for now]
+
 pandas
 numpy
 quandl
