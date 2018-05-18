@@ -32,7 +32,7 @@ the available tickers for this source are:
 
 I' add others asap
 
-ita_tickers = __mtools__.tickers('italy')                    # using the API to get all the tickers in italy
+>>> ita_tickers = __mtools__.tickers('italy')                    # using the API to get all the tickers in italy
 test_tickers = ita_tickers.iloc[[1,123,100,45,10,5], : ]     # choosing some
 start_date,end_date = '2017-1-1','2018-04-10'                # defining start and stop
 desired = ['key_ratio','historical', 'dividens', 'splits', 'ownership','executives', 'company_profile', 'real_time_info','complete_valuation', 'current_valuation', 'forward_valuation', 'history_valuation']   # these are the information we want to scrape
