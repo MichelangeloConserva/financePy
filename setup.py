@@ -15,7 +15,7 @@ except:
 setup(
   name='financePy',
   packages=find_packages(),
-  version='0.2.1',
+  version='0.1',
   description='+ una provae',
   author='Michelangelo Conserva',
   author_email='mom',
