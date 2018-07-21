@@ -26,5 +26,5 @@ setup(
   long_description=_readme,
   url='no',
   download_url='https://github.com/MichelangeloConserva/prova/releases',
-  install_requires=['setuptools', 'pandas', 'requests','quandl','bs4','xlrd','scipy','selenium','matplotlib'],
+  install_requires=['setuptools', 'pandas', 'requests','quandl','bs4','xlrd','scipy','selenium','matplotlib','html5lib==0.9999999'],
 )
