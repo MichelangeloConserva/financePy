@@ -14,7 +14,7 @@ def bollinger_bands(data, cat = 'Close', window = 20, dropna = True, notifier = 
     lower = SMA - data[cat].rolling(window).std()
 
     result = pd.concat([data[cat],SMA,upper,lower],1)
-    result.columns = ['Close','SMA'+str(window),'Upper','Lower']
+    result.columns = [cat,'SMA'+str(window),'Upper','Lower']
     if dropna:
         result.dropna(inplace = True)
     else:
@@ -31,8 +31,7 @@ def bollinger_bands(data, cat = 'Close', window = 20, dropna = True, notifier = 
 def exp_mov_avg(data, windows_list = [35,70], cat = 'Close', dropna = True, notifier = False):
 
     result = pd.concat([ data[cat].ewm(span = x).mean() for x in windows_list ]+[data[cat]] ,1)
-    result.columns = ['Ema_'+str(x) for x in windows_list] + [cat] 
-
+    result.columns = ['Ema_'+str(x) for x in windows_list] + [cat]
 
     if dropna:
         result.dropna(inplace = True)
