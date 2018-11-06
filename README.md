@@ -13,7 +13,7 @@ sudo apt-get install python3-tk
 
 The raccomeded installation commandand is:
 ```
-sudo python3 -m pip install git+https://github.com/MichelangeloConserva/financePy.git --user
+python3 -m pip install git+https://github.com/MichelangeloConserva/financePy.git --user
 ```
 
 
