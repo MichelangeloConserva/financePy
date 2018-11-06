@@ -37,7 +37,7 @@ the available tickers for this source are:
 * 'italy'
 * 'germany'
 
-I' add others asap
+I will add others as soon as possible
 
 ~~~~
 ita_tickers = __mtools__.tickers('italy')                    # using the API to get all the tickers in italy
