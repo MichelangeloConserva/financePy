@@ -11,12 +11,10 @@ from pandas.tseries.offsets import DateOffset
 
 
 def stationary_check(time_serie):
-    pass    
+    pass
 
 
 def arima_model(time_serie, model = 'additive', plot = True, dropna = False):
-    
-    
     
     decomp = seasonal_decompose(time_serie, model = model)
     if plot:
@@ -25,7 +23,3 @@ def arima_model(time_serie, model = 'additive', plot = True, dropna = False):
             return pd.concat({'Observed' : decomp.observed, 'Trend' : decomp.trend, 'Seasonal' : decomp.seasonal, 'Residual' : decomp.resid}, 1).dropna()
     else:
             return pd.concat({'Observed' : decomp.observed, 'Trend' : decomp.trend, 'Seasonal' : decomp.seasonal, 'Residual' : decomp.resid}, 1)
-
-            
-    
-
