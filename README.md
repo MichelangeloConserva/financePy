@@ -1,16 +1,5 @@
 # financePy
 A very high-level finance package
-package you need to have installed: 
-. python3 -m pip install ...
-
-* pandas
-* numpy
-* quandl
-* bs4
-* matplotlib
-* xlrd
-* scipy
-* selenium
 
 if you want the plotter to work correctly you need to manually install
 ```
