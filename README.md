@@ -30,7 +30,7 @@ from financePy.scrapers.yahoo import tools as __ytools__
 from financePy.scrapers.morningstar import tools as __mtools__
 from financePy.scrapers.quandl import tools as __qtools__
 ~~~~
-### Morningstar
+### Morningstar (Actually broken since morningstar chanegd the api lately) 
 
 the available tickers for this source are:
 * 'united states'
