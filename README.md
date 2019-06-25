@@ -1,5 +1,5 @@
 # financePy
-A very high-level finance package
+A high-level finance package
 
 if you want the plotter to work correctly you need to manually install
 ```
