@@ -37,7 +37,6 @@ the available tickers for this source are:
 * 'italy'
 * 'germany'
 
-I will add others as soon as possible
 
 ~~~~
 ita_tickers = __mtools__.tickers('italy')                    # using the API to get all the tickers in italy
@@ -63,7 +62,8 @@ start_date,end_date = '2017-1-1','2018-04-10'
 y_scraped = scr.Y_data(china_test,'all',start_date,end_date)
 ~~~~
 
-## quandl
+## quandl   (Actually broken since quandl chanegd the api lately) 
+
 ~~~~
 quandl_tickers = __qtools__.tickers()                # pandas dataframe for all quandl tickers
 quandl_test = quandl_tickers.iloc[[1,2,3,234,543,2,345,678,532],0].tolist()
@@ -122,7 +122,7 @@ q_markowitz_alloc = portfolio.markowits_allocation(plot = True)
 
 
 I'm working on tons of other features and I'm quite excited about the results I achieved until now.
-The only thing I ask you is to send me e-mail michelangelo.conserva@protonmail.com or add me on facebook www.facebook.com/michelangelo.conserva to tell me your opinion and give suggestions.
+The only thing I ask you is to send me e-mail michelangelo.conserva@protonmail.com to tell me your opinion and give suggestions.
 
 
 
